@@ -1,72 +1,81 @@
-# 🎓 Sinhgad Campus Mart & AI Store Finder
-### Dedicated Hyperlocal Marketplace & AI Agent for Sinhgad Institutes Students (Pune)
+# 🎓 Sinhgad Campus Mart & Chigru AI Shop Hunter
+### Hyperlocal Marketplace & AI Agent for Sinhgad Institutes Students (Pune)
 
-> **Live Server**: [http://localhost:5173](http://localhost:5173)  
-> **Campuses Covered**: Sinhgad College of Engineering (SCOE), Smt. Kashibai Navale College of Engineering (SKNCOE), NBN Sinhgad Technical Institutes Campus (Ambegaon), SITS (Narhe), Sinhgad Pharmacy (SCOP), SIOM, and Sinhgad Hostels.
-
----
-
-## 🌟 Key Features
-
-### 1. 🤖 Conversational AI Shopper Agent ("Sinhgad Mitra")
-- **Interactive Multi-Step Guidance**:
-  - **Question 1**: *"What product or item are you looking for today?"* (Offers one-click suggestions: Mini Drafters, White Lab Apron, Arduino Uno, Decoded Books, Black Book Hardcover Binding, Casio fx-991EX, Hostel Extension Board, etc.).
-  - **Question 2**: *"What is your maximum target budget in ₹?"* (One-click chips: ₹150, ₹300, ₹450, ₹600, ₹1000, or Any Budget).
-  - **Question 3**: *"Where are you currently located on Sinhgad Campus?"* (SCOE Main Gate, SKNCOE, Central Library, Boys/Girls Hostels, Fun College Chowk, NBN Ambegaon).
-- **Cheapest-to-Expensive Price Ranking**:
-  - The AI Agent filters out items above budget and **strictly sorts all matching options from lowest price to highest price** (`#1 Cheapest Option`, `#2 Value Pick`, etc.).
-  - Calculates real savings against original MRP (with student ID discount).
-- **Real-time Stock Availability**:
-  - Visual status badges: `In Stock (units available)`, `Few Left (only 2-3 left)`, or `Out of Stock / Pre-order`.
-- **Integrated Google Maps Navigation**:
-  - One-click **"Directions on Google Maps"** button that automatically launches turn-by-turn navigation directly to the store coordinates (`https://www.google.com/maps/dir/?api=1&destination=lat,lng`).
-  - Direct walking distance (e.g. `0.05 km • 1 min walk`).
+> **Live Local Server**: [http://localhost:5173](http://localhost:5173)  
+> **Sinhgad Campuses Covered**: SCOE (Sinhgad College of Engineering), SKNCOE, NBN Sinhgad (Ambegaon), SITS (Narhe), Sinhgad Pharmacy (SCOP), SIOM, and Sinhgad Hostels.
 
 ---
 
-### 2. 👤 Student Customer Profile & Virtual ID Pass
-- **Student Profile Management**:
-  - Full Name, Sinhgad PRN / Roll Number, Contact WhatsApp & Email.
-  - Sinhgad College Selector (SCOE, SKNCOE, NBN, SITS, etc.).
-  - Branch/Department & Year (FE, SE, TE, BE).
-  - Residence type (Sinhgad Boys/Girls Hostel, Private PG in Vadgaon/Ambegaon, Day Scholar).
-- **Digital Sinhgad Student Mart ID Card**:
-  - Generates a verified student customer badge with unique PRN and QR simulation.
-  - Entitles students to 10%–25% official discounts at campus stores.
-  - Persisted automatically to `localStorage`.
+## 🤖 Meet "Chigru" — Your Campus AI Shopping Agent
+
+**Chigru** is an intelligent conversational AI agent built specifically for Sinhgad students.
+
+### How Chigru Works:
+1. **Asks What You Want & At What Price**:
+   - Customer enters their item (e.g. *Mini Drafter, Lab Apron, Arduino Uno, SPPU Decoded, Black Book Hardcover Binding, Casio fx-991EX, Hostel Kettle, Extension Board*).
+   - Customer enters their **target price / budget** (e.g. *₹300, ₹180, ₹450, ₹150*, or selects one-click chips).
+2. **Shows Each & Every Shop Ranked from Cheapest to Most Expensive**:
+   - Compares every partner shop around Sinhgad campus carrying that item.
+   - Highlights:
+     - `#1 CHEAPEST SHOP`: Lowest verified price on campus.
+     - Price comparison badge: `🟢 ₹40 Under Your Target Price!` or `🟡 Above Target Price`.
+     - Live Availability status: `In Stock (18 units)` or `Few Left (3 left)`.
+     - Exact distance from student's location (e.g. `0.05 km • 1 min walk from SCOE Gate`).
+3. **Turn-by-Turn Google Maps Navigation**:
+   - Every shop card includes a direct **"🗺️ Directions on Google Maps"** button that opens turn-by-turn walking/driving directions to the exact store coordinates.
+4. **Instant WhatsApp Hold**:
+   - Includes a direct **"📱 WhatsApp Shop"** button with a pre-filled reservation message mentioning the student's name, PRN, and product so the shopkeeper keeps it behind the counter!
 
 ---
 
-### 3. 🗺️ Interactive Leaflet & Google Maps Campus Locator
-- **Sinhgad Campus Landmark Markers**:
-  - SCOE Main Gate, SKNCOE, Central Library, Sinhgad Boys Hostels 1–5, Girls Hostel Complex, Fun College Chowk, Navale Bridge.
-- **Partner Local Stores**:
-  - **Morya Engineering Stationery & Xerox** (Opp. SCOE Gate)
-  - **Navale Electronics & IoT Project Lab** (Near SKNCOE & Navale Hospital)
-  - **Sinhgad Central Book Depot & SPPU Decoded** (Fun College Chowk)
-  - **Sai Hardcover Project Binding & High-Speed Xerox** (Near NBN Gate)
-  - **Omkar Hostel Essentials & Daily Mart** (Hostel Lane 3)
-  - **Sinhgad 24x7 LifeCare Chemist** (Navale Bridge Chowk)
-  - **TechZone Laptop & Gadgets Care** (Opp. Dental College)
-  - **Sinhgad Sports & Fitness Depot** (Sports Complex Ambegaon)
-- Clicking any store marker reveals products sold, prices, and one-click Google Maps walking directions.
+## 🚀 How to Deploy on GitHub & Generate a Live Link
 
----
+The project has already been initialized with `git` and includes an automated **GitHub Pages Deployment Workflow** (`.github/workflows/deploy.yml`).
 
-### 4. 🛒 Product Reservation & WhatsApp Hold
-- Students can hold/reserve urgent items (e.g., Mini Drafters before graphics exam, Arduino Uno boards for project review) without paying upfront.
-- Generates a unique **Sinhgad Reservation Token** (`SINHGAD-RES-XXXXXX`).
-- Includes direct WhatsApp integration with the shopkeeper to keep the item ready at the counter.
+### Step 1: Create a New Repository on GitHub
+1. Go to [https://github.com/new](https://github.com/new).
+2. Enter a repository name (e.g., `sinhgad-campus-mart` or `chigru-sinhgad`).
+3. Set it to **Public** and leave "Add a README file" unchecked (since we already have one).
+4. Click **Create repository**.
 
----
-
-## 🚀 How to Run Locally
+### Step 2: Push Your Local Code to GitHub
+Open your terminal/PowerShell in this project folder and run:
 
 ```bash
-# 1. Install dependencies
-npm run install
+git remote add origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME.git
+git push -u origin main
+```
+*(Replace `YOUR_GITHUB_USERNAME` and `YOUR_REPOSITORY_NAME` with your actual GitHub username and repository name).*
 
-# 2. Start the development server
+### Step 3: Enable GitHub Pages (To Generate the Live Link)
+1. In your GitHub repository, click on **Settings** (top tab).
+2. On the left sidebar, click on **Pages**.
+3. Under **Build and deployment > Source**, select **GitHub Actions**.
+4. That's it! GitHub will automatically run the build and give you a live URL like:
+   `https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY_NAME/`
+
+---
+
+## ⚡ Alternative 1-Click Deployment (Vercel / Netlify)
+
+If you prefer **Vercel** or **Netlify** for an instant free custom domain:
+1. Push your code to GitHub as shown above.
+2. Go to [vercel.com](https://vercel.com) or [netlify.com](https://netlify.com).
+3. Click **"Add New Project"** > **"Import from Git"**.
+4. Select your `sinhgad-campus-mart` repository and click **Deploy**.
+5. You will get a live link like `https://sinhgad-mart.vercel.app` in under 30 seconds!
+
+---
+
+## 🛠️ Local Development
+
+```bash
+# 1. Install dependencies (already installed)
+npm install
+
+# 2. Run local dev server
 npm run dev
-# The website will be available at http://localhost:5173
+
+# 3. Build for production
+npm run build
 ```
