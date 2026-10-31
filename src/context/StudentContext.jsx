@@ -70,7 +70,32 @@ export const RESIDENCE_TYPES = [
   'Day Scholar / Commuter from Pune City'
 ];
 
+const DEFAULT_REGISTERED_USERS = [
+  { id: 'usr-1', name: 'Abhishek Mishra', phone: '+91 98765 43210', role: 'consumer', college: 'SCOE - Sinhgad College of Engineering (Vadgaon BK)', registeredAt: '01 Nov 2026, 12:15 AM' },
+  { id: 'usr-2', name: 'Manoj Patil', phone: '+91 98221 44552', role: 'shopkeeper', storeName: 'Gurukrupa Student Mess & Dining Hall', registeredAt: '01 Nov 2026, 12:30 AM' },
+  { id: 'usr-3', name: 'Pooja Kadam', phone: '+91 98902 44331', role: 'consumer', college: 'SKNCOE - Smt. Kashibai Navale College of Engineering (Vadgaon BK)', registeredAt: '01 Nov 2026, 01:05 AM' }
+];
+
 export function StudentProvider({ children }) {
+  // Onboarding popup completion state
+  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
+    try {
+      return localStorage.getItem('sinhgad_onboarding_completed') === 'true';
+    } catch (e) {
+      return false;
+    }
+  });
+
+  // User Registry Database (Stores every person who enters name & phone)
+  const [registeredUsers, setRegisteredUsers] = useState(() => {
+    try {
+      const saved = localStorage.getItem('sinhgad_user_registry');
+      return saved ? JSON.parse(saved) : DEFAULT_REGISTERED_USERS;
+    } catch (e) {
+      return DEFAULT_REGISTERED_USERS;
+    }
+  });
+
   // Current active login mode: 'consumer' or 'shopkeeper'
   const [activeRole, setActiveRole] = useState(() => {
     try {
@@ -242,6 +267,64 @@ export function StudentProvider({ children }) {
     setStores(prev => prev.map(s => s.id === storeId ? { ...s, isOpen: !s.isOpen } : s));
   };
 
+  useEffect(() => {
+    try {
+      localStorage.setItem('sinhgad_onboarding_completed', String(hasCompletedOnboarding));
+    } catch (e) {}
+  }, [hasCompletedOnboarding]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('sinhgad_user_registry', JSON.stringify(registeredUsers));
+    } catch (e) {}
+  }, [registeredUsers]);
+
+  // Registers a visitor (Name, Phone, Role) and stores them in the persistent database!
+  const registerUser = ({ name, phone, role = 'consumer', college = '', branch = '', storeName = '' }) => {
+    const formattedDate = new Date().toLocaleString('en-IN', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
+
+    const newUserRecord = {
+      id: `usr-${Date.now()}`,
+      name,
+      phone,
+      role,
+      college: college || 'SCOE - Sinhgad College of Engineering (Vadgaon BK)',
+      branch: branch || 'Computer Engineering',
+      storeName: storeName || '',
+      registeredAt: formattedDate
+    };
+
+    setRegisteredUsers(prev => [newUserRecord, ...prev]);
+    setActiveRole(role);
+    setHasCompletedOnboarding(true);
+
+    if (role === 'consumer') {
+      setProfile(prev => ({
+        ...prev,
+        name,
+        phone,
+        college: college || prev.college,
+        branch: branch || prev.branch
+      }));
+    } else {
+      setShopkeeperProfile(prev => ({
+        ...prev,
+        ownerName: name,
+        phone,
+        storeName: storeName || prev.storeName
+      }));
+    }
+
+    return newUserRecord;
+  };
+
   const addNewStore = (storeData) => {
     const newStore = {
       ...storeData,
@@ -257,6 +340,10 @@ export function StudentProvider({ children }) {
 
   return (
     <StudentContext.Provider value={{
+      hasCompletedOnboarding,
+      setHasCompletedOnboarding,
+      registeredUsers,
+      registerUser,
       activeRole,
       setActiveRole,
       profile,

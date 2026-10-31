@@ -29,9 +29,10 @@ import CampusMapModal from './components/CampusMapModal';
 import UserProfileModal from './components/UserProfileModal';
 import StoreDirectoryModal from './components/StoreDirectoryModal';
 import CartModal from './components/CartModal';
+import OnboardingPopupModal from './components/OnboardingPopupModal';
 
 export default function App() {
-  const { wishlist, cart, userLocation, profile, activeRole, products, stores, shopkeeperProfile } = useStudent();
+  const { wishlist, cart, userLocation, profile, activeRole, products, stores, shopkeeperProfile, hasCompletedOnboarding } = useStudent();
 
   // Navigation & Modals State
   const [activeTab, setActiveTab] = useState('shop'); // 'shop' | 'wishlist' | 'cart'
@@ -40,6 +41,7 @@ export default function App() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isStoreDirOpen, setIsStoreDirOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isOnboardingOpen, setIsOnboardingOpen] = useState(!hasCompletedOnboarding);
 
   // Selected item / store for Map
   const [mapSelectedProduct, setMapSelectedProduct] = useState(null);
@@ -353,6 +355,12 @@ export default function App() {
       <CartModal
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
+      />
+
+      {/* Onboarding Welcome Popup (Prompts Name, Phone & Role) */}
+      <OnboardingPopupModal
+        isOpen={isOnboardingOpen}
+        onClose={() => setIsOnboardingOpen(false)}
       />
 
       {/* Footer */}

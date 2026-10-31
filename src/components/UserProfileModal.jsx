@@ -42,10 +42,11 @@ export default function UserProfileModal({ isOpen, onClose }) {
     updateProductInStore, 
     deleteProductFromStore,
     toggleStoreStatus,
-    addNewStore 
+    addNewStore,
+    registeredUsers 
   } = useStudent();
 
-  const [currentTab, setCurrentTab] = useState(activeRole); // 'consumer' | 'shopkeeper'
+  const [currentTab, setCurrentTab] = useState(activeRole); // 'consumer' | 'shopkeeper' | 'database'
   
   // Consumer form state
   const [consumerData, setConsumerData] = useState({ ...profile });
@@ -181,30 +182,42 @@ export default function UserProfileModal({ isOpen, onClose }) {
             Choose whether you are a Student Consumer or a Campus Shopkeeper / Mess Owner
           </p>
 
-          {/* Role Switcher Pills */}
-          <div className="mt-5 grid grid-cols-2 gap-2 bg-black/20 p-1.5 rounded-2xl max-w-md">
+          {/* Role & Database Switcher Pills */}
+          <div className="mt-5 grid grid-cols-3 gap-1.5 bg-black/20 p-1.5 rounded-2xl max-w-xl">
             <button
               onClick={() => setCurrentTab('consumer')}
-              className={`flex items-center justify-center space-x-2 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition ${
+              className={`flex items-center justify-center space-x-1.5 py-2 rounded-xl font-bold text-xs transition ${
                 currentTab === 'consumer'
                   ? 'bg-white text-orange-950 shadow-md'
                   : 'text-orange-100 hover:text-white hover:bg-white/10'
               }`}
             >
-              <User className="w-4 h-4 text-orange-600" />
-              <span>Consumer (Student)</span>
+              <User className="w-3.5 h-3.5 text-orange-600" />
+              <span>Consumer</span>
             </button>
 
             <button
               onClick={() => setCurrentTab('shopkeeper')}
-              className={`flex items-center justify-center space-x-2 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition ${
+              className={`flex items-center justify-center space-x-1.5 py-2 rounded-xl font-bold text-xs transition ${
                 currentTab === 'shopkeeper'
                   ? 'bg-white text-orange-950 shadow-md'
                   : 'text-orange-100 hover:text-white hover:bg-white/10'
               }`}
             >
-              <Store className="w-4 h-4 text-orange-600" />
-              <span>Shopkeeper (Merchant)</span>
+              <Store className="w-3.5 h-3.5 text-orange-600" />
+              <span>Shopkeeper</span>
+            </button>
+
+            <button
+              onClick={() => setCurrentTab('database')}
+              className={`flex items-center justify-center space-x-1.5 py-2 rounded-xl font-bold text-xs transition ${
+                currentTab === 'database'
+                  ? 'bg-white text-orange-950 shadow-md'
+                  : 'text-orange-100 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
+              <span>Users Database ({registeredUsers?.length || 0})</span>
             </button>
           </div>
         </div>
@@ -742,6 +755,75 @@ export default function UserProfileModal({ isOpen, onClose }) {
                 </button>
               </div>
 
+            </div>
+          )}
+
+          {/* ================================================= */}
+          {/* REGISTERED USERS DATABASE TAB */}
+          {/* ================================================= */}
+          {currentTab === 'database' && (
+            <div className="space-y-4">
+              <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                  <div>
+                    <span className="text-[10px] font-bold text-orange-600 uppercase tracking-wider">
+                      Campus Directory
+                    </span>
+                    <h3 className="text-base font-extrabold text-slate-900">
+                      Registered Users & Phone Database ({registeredUsers?.length || 0})
+                    </h3>
+                  </div>
+                  <span className="bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs px-2.5 py-1 rounded-xl font-mono font-bold">
+                    Persistent Storage Active
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 mb-4">
+                  Every visitor who enters their name and phone number is securely stored in this database.
+                </p>
+
+                {/* User Table */}
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b border-stone-200 text-slate-500 font-semibold uppercase text-[10px] tracking-wider bg-stone-50">
+                        <th className="py-2.5 px-3">Name</th>
+                        <th className="py-2.5 px-3">Phone / WhatsApp</th>
+                        <th className="py-2.5 px-3">Role</th>
+                        <th className="py-2.5 px-3">College / Store</th>
+                        <th className="py-2.5 px-3">Registered At</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-stone-100">
+                      {(registeredUsers || []).map((u) => (
+                        <tr key={u.id} className="hover:bg-orange-50/40 transition">
+                          <td className="py-2.5 px-3 font-bold text-slate-800">
+                            {u.name}
+                          </td>
+                          <td className="py-2.5 px-3 font-mono text-orange-700 font-semibold">
+                            {u.phone}
+                          </td>
+                          <td className="py-2.5 px-3">
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                              u.role === 'shopkeeper'
+                                ? 'bg-amber-100 text-amber-900'
+                                : 'bg-blue-100 text-blue-900'
+                            }`}>
+                              {u.role === 'shopkeeper' ? 'Shopkeeper' : 'Student'}
+                            </span>
+                          </td>
+                          <td className="py-2.5 px-3 text-slate-600 truncate max-w-[160px]">
+                            {u.storeName || u.college || 'SCOE Vadgaon'}
+                          </td>
+                          <td className="py-2.5 px-3 text-slate-400 font-mono text-[10px]">
+                            {u.registeredAt || 'Just now'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
             </div>
           )}
 
