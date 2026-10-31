@@ -18,7 +18,7 @@ import { useStudent } from '../context/StudentContext';
 import { calculateDistanceKm } from '../services/aiAgentService';
 
 export default function CampusMapModal({ isOpen, onClose, selectedProduct, highlightedStoreId }) {
-  const { userLocation } = useStudent();
+  const { userLocation, stores, products } = useStudent();
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersRef = useRef([]);
@@ -97,8 +97,8 @@ export default function CampusMapModal({ isOpen, onClose, selectedProduct, highl
         }
       });
 
-      // Add Store Markers
-      STORES.forEach(store => {
+      // Add Store Markers from dynamic database
+      stores.forEach(store => {
         const isSelected = selectedProduct && selectedProduct.storeId === store.id;
         const isHighlighted = highlightedStoreId === store.id;
         const color = isSelected || isHighlighted ? '#16a34a' : '#ea580c';
@@ -128,13 +128,13 @@ export default function CampusMapModal({ isOpen, onClose, selectedProduct, highl
         mapInstanceRef.current = null;
       }
     };
-  }, [isOpen, selectedProduct, highlightedStoreId]);
+  }, [isOpen, selectedProduct, highlightedStoreId, stores]);
 
   if (!isOpen) return null;
 
-  // Selected store items
+  // Selected store items from dynamic database
   const storeProducts = activeStore 
-    ? PRODUCTS.filter(p => p.storeId === activeStore.id).sort((a,b) => a.price - b.price)
+    ? products.filter(p => p.storeId === activeStore.id).sort((a,b) => a.price - b.price)
     : [];
 
   const distanceToActiveStore = activeStore

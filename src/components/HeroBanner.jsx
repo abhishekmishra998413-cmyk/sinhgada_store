@@ -19,14 +19,16 @@ export default function HeroBanner({
   const { profile, userLocation } = useStudent();
 
   const quickSearches = [
-    { label: 'Mini Drafter', query: 'drafter' },
-    { label: 'Lab Apron', query: 'apron' },
-    { label: 'Arduino Uno', query: 'arduino' },
-    { label: 'Black Book Binding', query: 'black book' },
-    { label: 'Casio fx-991EX', query: 'casio' },
-    { label: 'SPPU Decoded', query: 'decoded' },
-    { label: 'Hostel Kettle', query: 'kettle' },
-    { label: 'Extension Board', query: 'extension board' }
+    { label: '🍲 Student Veg Thali (Mess)', query: 'thali' },
+    { label: '🍜 Cheese Maggi', query: 'maggi' },
+    { label: '☕ Thick Cold Coffee', query: 'coffee' },
+    { label: '🍵 Kulhad Chai', query: 'chai' },
+    { label: '📐 Mini Drafter', query: 'drafter' },
+    { label: '🥼 Lab Apron', query: 'apron' },
+    { label: '⚡ Arduino Uno', query: 'arduino' },
+    { label: '📚 Black Book Binding', query: 'black book' },
+    { label: '🔢 Casio fx-991EX', query: 'casio' },
+    { label: '🫖 Hostel Kettle', query: 'kettle' }
   ];
 
   return (

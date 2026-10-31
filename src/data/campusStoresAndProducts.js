@@ -1,5 +1,6 @@
-// Sinhgad Campus Stores & Products Database
-// Covers Vadgaon Budruk, Ambegaon BK, Narhe & Katraj-Dehu Bypass (Pune 411041)
+// Comprehensive Sinhgad Campus Stores & Products Database
+// Categories: Food & Mess, Engineering Stationery, Academic Books, Xerox/Binding, 
+// Electronics & Robotics, Hostel Essentials, Tech Repair, Pharmacy, Sports
 
 export const CAMPUS_LOCATIONS = [
   { id: 'scoe', name: 'SCOE (Sinhgad College of Engineering) Main Gate', lat: 18.4642, lng: 73.8351 },
@@ -12,12 +13,141 @@ export const CAMPUS_LOCATIONS = [
   { id: 'navale_bridge', name: 'Navale Bridge / Bypass Gate', lat: 18.4668, lng: 73.8315 },
 ];
 
-export const STORES = [
+export const INITIAL_STORES = [
+  // --- FOOD, MESS & CANTEENS ---
+  {
+    id: 'store-gurukrupa-mess',
+    name: 'Gurukrupa Student Mess & Dining Hall',
+    category: 'Food, Canteen & Student Mess',
+    tagline: 'Unlimited Pure Veg Student Thali & Monthly Mess',
+    address: 'Lane 2, Behind Sinhgad Boys Hostel 2, Vadgaon BK, Pune',
+    phone: '+91 98220 55112',
+    rating: 4.8,
+    reviewsCount: 680,
+    openHours: '11:00 AM – 3:30 PM, 7:00 PM – 10:30 PM',
+    lat: 18.4652,
+    lng: 73.8365,
+    proximity: '40m from Sinhgad Boys Hostels',
+    studentDiscountNote: 'Monthly Student Pass: ₹2,600 / month (Unlimited Lunch & Dinner)',
+    isOpen: true,
+    acceptsGPay: true,
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Gurukrupa+Mess+Sinhgad+Hostel+Vadgaon+Pune'
+  },
+  {
+    id: 'store-central-canteen',
+    name: 'Sinhgad Central Canteen & Amul Cafe',
+    category: 'Food, Canteen & Student Mess',
+    tagline: 'Cold Coffee, Veg Sandwiches, Poha, Misal & Quick Bites',
+    address: 'Opp. Sinhgad Central Library, Fun College Chowk, Vadgaon BK',
+    phone: '+91 98901 22334',
+    rating: 4.7,
+    reviewsCount: 890,
+    openHours: '7:30 AM – 10:00 PM (Everyday)',
+    lat: 18.4630,
+    lng: 73.8345,
+    proximity: '50m from Central Library',
+    studentDiscountNote: '10% OFF on Canteen Thali with Sinhgad Student ID',
+    isOpen: true,
+    acceptsGPay: true,
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Sinhgad+Central+Canteen+Vadgaon+Pune'
+  },
+  {
+    id: 'store-chai-adda',
+    name: 'Chai Sutta Bar & Sinhgad Adda',
+    category: 'Food, Canteen & Student Mess',
+    tagline: 'Kulhad Chai, Bun Maska, Peri Peri Maggi & Sandwiches',
+    address: 'Shop 1, Near SCOE Main Gate, Vadgaon Budruk, Pune',
+    phone: '+91 98810 66778',
+    rating: 4.9,
+    reviewsCount: 1120,
+    openHours: '6:30 AM – 11:30 PM',
+    lat: 18.4645,
+    lng: 73.8354,
+    proximity: '30m from SCOE Main Gate',
+    studentDiscountNote: 'Student combo: Kulhad Chai + Bun Maska @ ₹45',
+    isOpen: true,
+    acceptsGPay: true,
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Chai+Sutta+Bar+SCOE+Vadgaon+Pune'
+  },
+  {
+    id: 'store-midnight-hunger',
+    name: 'Midnight Hunger Canteen (24x7 Student Point)',
+    category: 'Food, Canteen & Student Mess',
+    tagline: 'Late Night Maggi, Bread Omelette, Tea, Coffee & Rolls',
+    address: 'Near Sinhgad Boys Hostel 4, Vadgaon BK, Pune',
+    phone: '+91 94220 77881',
+    rating: 4.8,
+    reviewsCount: 740,
+    openHours: 'Open 24 Hours (All Night Hostel Delivery)',
+    lat: 18.4658,
+    lng: 73.8372,
+    proximity: '20m from Hostels 3, 4 & 5',
+    studentDiscountNote: 'Free delivery to all Sinhgad Hostels after 11 PM',
+    isOpen: true,
+    acceptsGPay: true,
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Sinhgad+Boys+Hostel+Canteen+Pune'
+  },
+  {
+    id: 'store-navale-biryani',
+    name: 'Navale Biryani & Rolls Hub',
+    category: 'Food, Canteen & Student Mess',
+    tagline: 'Hyderabadi Dum Biryani, Paneer Biryani & Shawarma',
+    address: 'Near Navale Hospital Backgate, Sinhgad Road, Pune',
+    phone: '+91 98602 33445',
+    rating: 4.6,
+    reviewsCount: 430,
+    openHours: '11:30 AM – 11:00 PM',
+    lat: 18.4624,
+    lng: 73.8332,
+    proximity: '110m from SKNCOE Gate',
+    studentDiscountNote: 'Special BE Student Biryani Combo @ ₹110',
+    isOpen: true,
+    acceptsGPay: true,
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Navale+Bridge+Biryani+Sinhgad+Road+Pune'
+  },
+  {
+    id: 'store-aparna-tiffin',
+    name: 'Aparna South Indian Tiffins & Dosa House',
+    category: 'Food, Canteen & Student Mess',
+    tagline: 'Masala Dosa, Idli Sambar, Medu Vada & Filter Coffee',
+    address: 'Ambegaon Pathar Main Road, Near NBN Gate, Pune',
+    phone: '+91 98224 88990',
+    rating: 4.7,
+    reviewsCount: 390,
+    openHours: '7:00 AM – 10:00 PM',
+    lat: 18.4588,
+    lng: 73.8360,
+    proximity: '70m from NBN Sinhgad Gate',
+    studentDiscountNote: 'Unlimited Sambar & Chutney on all orders',
+    isOpen: true,
+    acceptsGPay: true,
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Ambegaon+Pathar+South+Indian+Food+Pune'
+  },
+  {
+    id: 'store-campus-juice',
+    name: 'Campus Fresh Juice & Protein Shake Bar',
+    category: 'Food, Canteen & Student Mess',
+    tagline: 'Fresh Fruit Juices, Mosambi, Mango Shake & Gym Protein',
+    address: 'Fun College Chowk, Vadgaon BK, Pune',
+    phone: '+91 98231 11223',
+    rating: 4.9,
+    reviewsCount: 520,
+    openHours: '8:00 AM – 10:30 PM',
+    lat: 18.4627,
+    lng: 73.8349,
+    proximity: '60m from Central Library',
+    studentDiscountNote: '₹10 OFF on fresh Mosambi/Orange juice',
+    isOpen: true,
+    acceptsGPay: true,
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Fun+College+Chowk+Juice+Center+Pune'
+  },
+
+  // --- ENGINEERING STATIONERY & DRAWING TOOLS ---
   {
     id: 'store-morya',
     name: 'Morya Engineering Stationery & Xerox',
     category: 'Engineering Stationery & Tools',
-    tagline: 'SPPU Graphics Tools, Drafters, Aprons & Drawing Sets',
+    tagline: 'All SPPU Graphics Tools, Drafters, Aprons & Drawing Sets',
     address: 'Shop 4, Opp. SCOE Main Gate, Vadgaon Budruk, Pune',
     phone: '+91 98221 44552',
     rating: 4.8,
@@ -27,13 +157,14 @@ export const STORES = [
     lng: 73.8353,
     proximity: '50m from SCOE Main Gate',
     studentDiscountNote: '12% Flat Discount with Sinhgad ID',
+    isOpen: true,
     acceptsGPay: true,
     googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Morya+Stationery+SCOE+Vadgaon+Budruk+Pune'
   },
   {
     id: 'store-balaji',
     name: 'Balaji Stationery & Campus Xerox',
-    category: 'Stationery & Study Material',
+    category: 'Engineering Stationery & Tools',
     tagline: 'Budget Engineering Supplies & Xerox Center',
     address: 'Ground Floor, Near Sinhgad Central Library, Vadgaon BK, Pune',
     phone: '+91 98228 11440',
@@ -44,8 +175,29 @@ export const STORES = [
     lng: 73.8343,
     proximity: '80m from Central Library',
     studentDiscountNote: 'Student bundle deals on drafters & aprons',
+    isOpen: true,
     acceptsGPay: true,
     googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Sinhgad+Central+Library+Vadgaon+Pune'
+  },
+
+  // --- ACADEMIC BOOKS, DECODED & XEROX ---
+  {
+    id: 'store-central-books',
+    name: 'Sinhgad Central Book Depot & SPPU Decoded',
+    category: 'Academic Books & Decoded Notes',
+    tagline: 'TechMax, Nirali, SPPU Decoded & PYQ Sets',
+    address: 'Lane 2, Fun College Chowk, Vadgaon BK, Pune',
+    phone: '+91 98230 78912',
+    rating: 4.9,
+    reviewsCount: 512,
+    openHours: '8:00 AM – 10:30 PM',
+    lat: 18.4632,
+    lng: 73.8342,
+    proximity: '90m from Central Library',
+    studentDiscountNote: 'Buy & Sell used SPPU books at 50% price',
+    isOpen: true,
+    acceptsGPay: true,
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Fun+College+Chowk+Vadgaon+Budruk+Pune'
   },
   {
     id: 'store-sai-print',
@@ -61,26 +213,12 @@ export const STORES = [
     lng: 73.8364,
     proximity: '60m from NBN Sinhgad Gate',
     studentDiscountNote: '30 mins super-fast black book binding',
+    isOpen: true,
     acceptsGPay: true,
     googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=NBN+Sinhgad+Ambegaon+Pathar+Pune'
   },
-  {
-    id: 'store-central-books',
-    name: 'Sinhgad Central Book Depot & SPPU Decoded',
-    category: 'Academic Books & Decoded Notes',
-    tagline: 'TechMax, Nirali, SPPU Decoded & PYQ Sets',
-    address: 'Lane 2, Fun College Chowk, Vadgaon BK, Pune',
-    phone: '+91 98230 78912',
-    rating: 4.9,
-    reviewsCount: 512,
-    openHours: '8:00 AM – 10:30 PM',
-    lat: 18.4632,
-    lng: 73.8342,
-    proximity: '90m from Central Library',
-    studentDiscountNote: 'Buy & Sell used SPPU books at 50% price',
-    acceptsGPay: true,
-    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Fun+College+Chowk+Vadgaon+Budruk+Pune'
-  },
+
+  // --- ELECTRONICS, ROBOTICS & BE PROJECTS ---
   {
     id: 'store-navale-elec',
     name: 'Navale Electronics & IoT Project Lab',
@@ -95,13 +233,14 @@ export const STORES = [
     lng: 73.8330,
     proximity: '120m from SKNCOE Gate',
     studentDiscountNote: 'Free component testing & circuit advice',
+    isOpen: true,
     acceptsGPay: true,
     googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Navale+Hospital+Electronics+Sinhgad+Pune'
   },
   {
     id: 'store-vighnaharta-robotics',
     name: 'Vighnaharta Robotics & Components Hub',
-    category: 'Robotics, IoT & Hardware',
+    category: 'Electronics & BE Projects',
     tagline: 'Electronic Components, Sensors, Motors & Microcontrollers',
     address: 'Ambegaon Pathar Main Road, Near NBN Campus, Pune',
     phone: '+91 98505 44332',
@@ -112,9 +251,12 @@ export const STORES = [
     lng: 73.8358,
     proximity: '100m from NBN Sinhgad Gate',
     studentDiscountNote: 'BE Final Year group project discounts',
+    isOpen: true,
     acceptsGPay: true,
     googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Ambegaon+Pathar+Pune+Electronics'
   },
+
+  // --- TECH ACCESSORIES & LAPTOP CARE ---
   {
     id: 'store-techzone',
     name: 'TechZone Laptop & Gadgets Care',
@@ -129,9 +271,12 @@ export const STORES = [
     lng: 73.8377,
     proximity: '150m from Sinhgad Dental / Pharmacy',
     studentDiscountNote: 'Free thermal paste cleaning on laptop repair',
+    isOpen: true,
     acceptsGPay: true,
     googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Sinhgad+Dental+College+Vadgaon+Budruk+Pune'
   },
+
+  // --- HOSTEL GEAR & ESSENTIALS ---
   {
     id: 'store-omkar-hostel',
     name: 'Omkar Hostel Essentials & Daily Mart',
@@ -146,9 +291,12 @@ export const STORES = [
     lng: 73.8370,
     proximity: '30m from Hostel 3 & 4',
     studentDiscountNote: 'Free room delivery to Sinhgad Hostels',
+    isOpen: true,
     acceptsGPay: true,
     googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Sinhgad+Boys+Hostel+Vadgaon+Budruk+Pune'
   },
+
+  // --- PHARMACY & WELLNESS ---
   {
     id: 'store-campus-chemist',
     name: 'Sinhgad 24x7 LifeCare Chemist & First Aid',
@@ -163,9 +311,12 @@ export const STORES = [
     lng: 73.8317,
     proximity: '300m from Vadgaon Campus Main Arch',
     studentDiscountNote: '15% off on First Aid & Generic Medicines',
+    isOpen: true,
     acceptsGPay: true,
     googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Navale+Bridge+Medical+Store+Sinhgad+Road+Pune'
   },
+
+  // --- SPORTS & FITNESS ---
   {
     id: 'store-sports-depot',
     name: 'Sinhgad Sports & Fitness Depot',
@@ -180,19 +331,169 @@ export const STORES = [
     lng: 73.8341,
     proximity: '70m from Sinhgad Cricket Ground',
     studentDiscountNote: 'Special team discounts for Sinhgad Karandak teams',
+    isOpen: true,
     acceptsGPay: true,
     googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Sinhgad+Sports+Complex+Vadgaon+Pune'
   }
 ];
 
-// Rich Product Catalogue where items are sold across MULTIPLE SHOPS with competing prices
-export const PRODUCTS = [
-  // --- MINI DRAFTERS (Multiple shops from cheapest to expensive) ---
+export const INITIAL_PRODUCTS = [
+  // ==========================================
+  // --- FOOD & MESS ITEMS (Multiple Shops) ---
+  // ==========================================
+  {
+    id: 'food-thali-gurukrupa',
+    name: 'Unlimited Student Special Veg Thali (Lunch/Dinner)',
+    itemGroup: 'thali',
+    category: 'Food, Canteen & Student Mess',
+    keywords: ['thali', 'mess', 'food', 'lunch', 'dinner', 'khana', 'unlimited thali', 'roti sabji', 'dal chawal'],
+    price: 80,
+    mrp: 110,
+    stock: 'in_stock',
+    stockCount: 85,
+    rating: 4.9,
+    storeId: 'store-gurukrupa-mess',
+    image: 'https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&w=500&q=80',
+    description: 'Fresh hot chapati (unlimited), 2 seasonal vegetables, dal tadka, steamed rice, papad, pickle & sweet.',
+    shopNote: 'Best student mess value near Sinhgad Boys Hostels'
+  },
+  {
+    id: 'food-thali-central',
+    name: 'Sinhgad Canteen Regular Mini Thali',
+    itemGroup: 'thali',
+    category: 'Food, Canteen & Student Mess',
+    keywords: ['thali', 'mini thali', 'lunch', 'canteen', 'food', 'khana'],
+    price: 65,
+    mrp: 90,
+    stock: 'in_stock',
+    stockCount: 60,
+    rating: 4.6,
+    storeId: 'store-central-canteen',
+    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=500&q=80',
+    description: '3 butter chapatis, 1 paneer/veg curry, dal fry, jeera rice and gulab jamun.',
+    shopNote: 'Quick service right opposite Sinhgad Central Library'
+  },
+  {
+    id: 'food-maggi-chaiadda',
+    name: 'Cheese Peri Peri Double Masala Maggi',
+    itemGroup: 'maggi',
+    category: 'Food, Canteen & Student Mess',
+    keywords: ['maggi', 'cheese maggi', 'noodles', 'snack', 'food', 'fast food'],
+    price: 45,
+    mrp: 65,
+    stock: 'in_stock',
+    stockCount: 99,
+    rating: 4.9,
+    storeId: 'store-chai-adda',
+    image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=500&q=80',
+    description: 'Steaming hot Maggi topped with grated Amul cheese, sweet corn and spicy peri peri seasoning.',
+    shopNote: 'Opp. SCOE Main Gate'
+  },
+  {
+    id: 'food-maggi-midnight',
+    name: 'Hostel Late-Night Butter Egg / Veg Maggi',
+    itemGroup: 'maggi',
+    category: 'Food, Canteen & Student Mess',
+    keywords: ['maggi', 'midnight maggi', 'egg maggi', 'late night food', 'hostel maggi'],
+    price: 40,
+    mrp: 55,
+    stock: 'in_stock',
+    stockCount: 150,
+    rating: 4.8,
+    storeId: 'store-midnight-hunger',
+    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=500&q=80',
+    description: 'Freshly prepared midnight comfort food delivered to hostel gates till 4 AM.',
+    shopNote: 'Open all night near Hostel 4'
+  },
+  {
+    id: 'food-coffee-central',
+    name: 'Sinhgad Famous Thick Cold Coffee with Chocolate Drizzle',
+    itemGroup: 'coffee',
+    category: 'Food, Canteen & Student Mess',
+    keywords: ['coffee', 'cold coffee', 'beverage', 'drink', 'shake', 'chocolate'],
+    price: 30,
+    mrp: 50,
+    stock: 'in_stock',
+    stockCount: 120,
+    rating: 5.0,
+    storeId: 'store-central-canteen',
+    image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=500&q=80',
+    description: 'Rich thick blended cold coffee with dark chocolate syrup and Hershey cocoa dusting.',
+    shopNote: 'The iconic Sinhgad reading hall break drink!'
+  },
+  {
+    id: 'food-chai-adda',
+    name: 'Elaichi / Ginger Kulhad Chai + Bun Maska Combo',
+    itemGroup: 'chai',
+    category: 'Food, Canteen & Student Mess',
+    keywords: ['chai', 'tea', 'kulhad chai', 'bun maska', 'breakfast', 'nashta'],
+    price: 35,
+    mrp: 50,
+    stock: 'in_stock',
+    stockCount: 200,
+    rating: 4.9,
+    storeId: 'store-chai-adda',
+    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=500&q=80',
+    description: 'Hot clay cup brewed aromatic tea with fresh soft bakery bun loaded with Amul butter.',
+    shopNote: 'Near SCOE Gate'
+  },
+  {
+    id: 'food-biryani-navale',
+    name: 'Student Chicken / Paneer Dum Biryani with Raita',
+    itemGroup: 'biryani',
+    category: 'Food, Canteen & Student Mess',
+    keywords: ['biryani', 'chicken biryani', 'paneer biryani', 'rice', 'lunch', 'dinner', 'food'],
+    price: 110,
+    mrp: 160,
+    stock: 'in_stock',
+    stockCount: 45,
+    rating: 4.7,
+    storeId: 'store-navale-biryani',
+    image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80',
+    description: 'Fragrant basmati rice slow cooked with rich spices, tender marinated chunks and onion curd raita.',
+    shopNote: 'Near SKNCOE / Navale Hospital'
+  },
+  {
+    id: 'food-dosa-aparna',
+    name: 'Crispy Butter Masala Dosa + 2 Chutneys & Sambar',
+    itemGroup: 'dosa',
+    category: 'Food, Canteen & Student Mess',
+    keywords: ['dosa', 'masala dosa', 'south indian', 'idli', 'breakfast', 'food', 'nashta'],
+    price: 50,
+    mrp: 75,
+    stock: 'in_stock',
+    stockCount: 65,
+    rating: 4.8,
+    storeId: 'store-aparna-tiffin',
+    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80',
+    description: 'Golden roasted crispy dosa stuffed with spiced potato masala, coconut chutney & hot vegetable sambar.',
+    shopNote: 'Near NBN Sinhgad Gate (Ambegaon)'
+  },
+  {
+    id: 'food-juice-mosambi',
+    name: 'Freshly Squeezed Mosambi / Orange Juice (No Added Sugar)',
+    itemGroup: 'juice',
+    category: 'Food, Canteen & Student Mess',
+    keywords: ['juice', 'fruit juice', 'mosambi', 'orange juice', 'healthy', 'drink'],
+    price: 40,
+    mrp: 60,
+    stock: 'in_stock',
+    stockCount: 40,
+    rating: 4.8,
+    storeId: 'store-campus-juice',
+    image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=500&q=80',
+    description: '100% pure fresh citrus juice squeezed on order with black salt and chaat masala.',
+    shopNote: 'Fun College Chowk'
+  },
+
+  // ==========================================
+  // --- ENGINEERING STATIONERY & TOOLS ---
+  // ==========================================
   {
     id: 'drafter-morya-budget',
     name: 'Campus Refurbished Mini Drafter (Omega Mechanism)',
     itemGroup: 'drafter',
-    category: 'Stationery & Engineering Tools',
+    category: 'Engineering Stationery & Tools',
     keywords: ['drafter', 'mini drafter', 'drawing', 'graphics', 'eg', 'engineering', 'omega'],
     price: 260,
     mrp: 400,
@@ -202,13 +503,13 @@ export const PRODUCTS = [
     storeId: 'store-morya',
     image: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=500&q=80',
     description: 'Pre-inspected smooth mini drafter with steel clamp. Tested angle lock for zero backlash.',
-    shopNote: 'Cheapest drafter option near SCOE gate with replacement guarantee'
+    shopNote: 'Cheapest drafter option near SCOE gate'
   },
   {
     id: 'drafter-balaji-basic',
     name: 'Balaji Student Mini Drafter + Free Sheet Clip',
     itemGroup: 'drafter',
-    category: 'Stationery & Engineering Tools',
+    category: 'Engineering Stationery & Tools',
     keywords: ['drafter', 'mini drafter', 'drawing', 'graphics', 'balaji drafter'],
     price: 290,
     mrp: 450,
@@ -218,29 +519,13 @@ export const PRODUCTS = [
     storeId: 'store-balaji',
     image: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=500&q=80',
     description: 'Lightweight aluminium scale arm with anti-scratch acrylic blades and sheet clips.',
-    shopNote: 'Right next to Sinhgad Central Library'
-  },
-  {
-    id: 'drafter-sai-standard',
-    name: 'Sai Pro Mini Drafter with Water-Resistant Bag',
-    itemGroup: 'drafter',
-    category: 'Stationery & Engineering Tools',
-    keywords: ['drafter', 'mini drafter', 'sai drafter', 'drawing', 'graphics'],
-    price: 340,
-    mrp: 500,
-    stock: 'in_stock',
-    stockCount: 8,
-    rating: 4.7,
-    storeId: 'store-sai-print',
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=500&q=80',
-    description: 'SPPU approved standard mini drafter with bevel edge scale and zippered sling pouch.',
-    shopNote: 'Closest to NBN Sinhgad Gate (Ambegaon Pathar)'
+    shopNote: 'Next to Central Library'
   },
   {
     id: 'drafter-morya-omega',
     name: 'Omega Professional Mini Drafter (SPPU Certified)',
     itemGroup: 'drafter',
-    category: 'Stationery & Engineering Tools',
+    category: 'Engineering Stationery & Tools',
     keywords: ['drafter', 'mini drafter', 'omega drafter', 'graphics', 'fe drafter'],
     price: 380,
     mrp: 520,
@@ -253,28 +538,10 @@ export const PRODUCTS = [
     shopNote: 'Best seller at SCOE Main Gate'
   },
   {
-    id: 'drafter-central-deluxe',
-    name: 'Isomars Techno Mini Drafter + Free Sheet Container',
-    itemGroup: 'drafter',
-    category: 'Stationery & Engineering Tools',
-    keywords: ['drafter', 'mini drafter', 'isomars', 'drawing', 'sheet holder'],
-    price: 430,
-    mrp: 600,
-    stock: 'few_left',
-    stockCount: 3,
-    rating: 4.8,
-    storeId: 'store-central-books',
-    image: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=500&q=80',
-    description: 'Heavy brass grip with laser-etched scale and waterproof telescopic drawing sheet holder included.',
-    shopNote: 'Fun College Chowk location'
-  },
-
-  // --- LAB APRONS (Multiple shops from cheapest to expensive) ---
-  {
     id: 'apron-balaji-economy',
     name: 'Economy White Lab Apron (Poly-Cotton)',
     itemGroup: 'apron',
-    category: 'Stationery & Engineering Tools',
+    category: 'Engineering Stationery & Tools',
     keywords: ['apron', 'lab coat', 'white apron', 'lab coat cheap', 'fe apron'],
     price: 160,
     mrp: 250,
@@ -287,26 +554,10 @@ export const PRODUCTS = [
     shopNote: 'Cheapest lab apron on campus'
   },
   {
-    id: 'apron-sai-cottonblend',
-    name: 'Standard White Lab Apron (Cotton Blend with Pen Pocket)',
-    itemGroup: 'apron',
-    category: 'Stationery & Engineering Tools',
-    keywords: ['apron', 'lab coat', 'white apron', 'chemistry apron'],
-    price: 195,
-    mrp: 300,
-    stock: 'in_stock',
-    stockCount: 16,
-    rating: 4.6,
-    storeId: 'store-sai-print',
-    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=500&q=80',
-    description: 'Durable anti-stain apron with 2 front pockets and side slit for easy pant pocket access.',
-    shopNote: 'Ambegaon NBN Gate'
-  },
-  {
     id: 'apron-morya-purecotton',
     name: 'Premium 100% Pure Heavy Cotton Lab Apron (Sinhgad Fit)',
     itemGroup: 'apron',
-    category: 'Stationery & Engineering Tools',
+    category: 'Engineering Stationery & Tools',
     keywords: ['apron', 'lab coat', 'white apron', 'cotton apron', 'pharmacy apron'],
     price: 240,
     mrp: 350,
@@ -318,24 +569,10 @@ export const PRODUCTS = [
     description: 'Heavy duty pure drill cotton lab coat. Flame & acid splash resistant for Chemistry, Workshop & Pharmacy.',
     shopNote: 'Opp. SCOE Gate - All sizes S to XXL'
   },
-  {
-    id: 'apron-chemist-medical',
-    name: 'Clinical Grade White Lab Coat (Sinhgad Pharmacy / Medical)',
-    itemGroup: 'apron',
-    category: 'Pharmacy & Wellness',
-    keywords: ['apron', 'lab coat', 'medical coat', 'pharmacy apron', 'doctor coat'],
-    price: 290,
-    mrp: 420,
-    stock: 'few_left',
-    stockCount: 6,
-    rating: 4.8,
-    storeId: 'store-campus-chemist',
-    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=500&q=80',
-    description: 'Bleach-safe wrinkle resistant hospital & pharmacy standard lab coat with engraved pearl buttons.',
-    shopNote: 'Navale Bridge Chowk (Open 24x7)'
-  },
 
-  // --- ARDUINO UNO & IOT (Multiple shops from cheapest to expensive) ---
+  // ==========================================
+  // --- ELECTRONICS & BE PROJECTS ---
+  // ==========================================
   {
     id: 'arduino-navale-ch340',
     name: 'Arduino Uno R3 (CH340G IC + Heavy Blue USB Cable)',
@@ -368,90 +605,10 @@ export const PRODUCTS = [
     description: 'Compact SMD ATmega328P with bonus 10 male-to-female jumper wires for quick breadboard prototyping.',
     shopNote: 'Near NBN Ambegaon Pathar'
   },
-  {
-    id: 'arduino-techzone-dip',
-    name: 'Arduino Uno R3 DIP Removable Microcontroller Board',
-    itemGroup: 'arduino',
-    category: 'Electronics & BE Projects',
-    keywords: ['arduino', 'arduino uno dip', 'atmega328p', 'iot', 'robotics'],
-    price: 499,
-    mrp: 750,
-    stock: 'in_stock',
-    stockCount: 10,
-    rating: 4.9,
-    storeId: 'store-techzone',
-    image: 'https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=500&q=80',
-    description: 'DIP socket design allows replacing the microcontroller IC if damaged during lab experiments.',
-    shopNote: 'Opp. Sinhgad Dental College'
-  },
-  {
-    id: 'arduino-navale-kit',
-    name: 'Arduino Uno Starter Project Kit (Board + Breadboard + Sensors)',
-    itemGroup: 'arduino',
-    category: 'Electronics & BE Projects',
-    keywords: ['arduino kit', 'arduino uno', 'starter kit', 'sensors', 'be project kit'],
-    price: 780,
-    mrp: 1200,
-    stock: 'few_left',
-    stockCount: 4,
-    rating: 4.9,
-    storeId: 'store-navale-elec',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80',
-    description: 'Complete mini project package: Uno board, 830 pt breadboard, Ultrasonic sensor, Servo, LEDs & resistors.',
-    shopNote: 'Best value all-in-one kit'
-  },
 
-  // --- FINAL YEAR BLACK BOOK PROJECT BINDING (Multiple shops) ---
-  {
-    id: 'blackbook-sai-standard',
-    name: 'Final Year Black Book Hardcover Binding (Gold Print - SPPU Format)',
-    itemGroup: 'blackbook',
-    category: 'Xerox & Black Book Project Binding',
-    keywords: ['black book', 'hardcover binding', 'project binding', 'golden print', 'be submission'],
-    price: 140,
-    mrp: 220,
-    stock: 'in_stock',
-    stockCount: 100,
-    rating: 4.9,
-    storeId: 'store-sai-print',
-    image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80',
-    description: 'Strict SPPU format royal black hardcover binding with embossed golden foil title & college crest.',
-    shopNote: 'Cheapest & fastest binding near NBN Gate (Ready in 30 mins)'
-  },
-  {
-    id: 'blackbook-morya-deluxe',
-    name: 'Premium Leatherette Black Book Project Hardcover + CD Pocket',
-    itemGroup: 'blackbook',
-    category: 'Xerox & Black Book Project Binding',
-    keywords: ['black book', 'project binding', 'hardcover', 'thesis binding'],
-    price: 160,
-    mrp: 250,
-    stock: 'in_stock',
-    stockCount: 75,
-    rating: 4.8,
-    storeId: 'store-morya',
-    image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80',
-    description: 'Matte-finish grain texture with gold embossed lettering and clear plastic CD holder attached at back.',
-    shopNote: 'Opp. SCOE Gate'
-  },
-  {
-    id: 'blackbook-balaji-express',
-    name: 'Express 20-Min Rush Black Book Hardcover Binding',
-    itemGroup: 'blackbook',
-    category: 'Xerox & Black Book Project Binding',
-    keywords: ['black book', 'urgent binding', 'project binding', 'rush binding'],
-    price: 190,
-    mrp: 280,
-    stock: 'in_stock',
-    stockCount: 50,
-    rating: 4.7,
-    storeId: 'store-balaji',
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=500&q=80',
-    description: 'Instant priority queue binding for same-day submission deadlines with high-gloss gold foil.',
-    shopNote: 'Near Central Library'
-  },
-
-  // --- SPPU DECODED & TECHMAX BOOKS (Multiple shops) ---
+  // ==========================================
+  // --- ACADEMIC BOOKS & XEROX ---
+  // ==========================================
   {
     id: 'decoded-central-preowned',
     name: 'Certified Pre-Owned SPPU Decoded Book (Latest Pattern)',
@@ -469,105 +626,25 @@ export const PRODUCTS = [
     shopNote: 'Cheapest Decoded at 50% discount in Fun College Chowk'
   },
   {
-    id: 'decoded-morya-xeroxset',
-    name: 'SPPU Solved Question Bank Xerox Bound Compilation',
-    itemGroup: 'decoded',
-    category: 'Academic Books & Decoded Notes',
-    keywords: ['decoded', 'xerox set', 'pyq', 'question bank', 'sppu'],
-    price: 210,
-    mrp: 350,
+    id: 'blackbook-sai-standard',
+    name: 'Final Year Black Book Hardcover Binding (Gold Print - SPPU Format)',
+    itemGroup: 'blackbook',
+    category: 'Xerox & Black Book Project Binding',
+    keywords: ['black book', 'hardcover binding', 'project binding', 'golden print', 'be submission'],
+    price: 140,
+    mrp: 220,
     stock: 'in_stock',
-    stockCount: 20,
-    rating: 4.6,
-    storeId: 'store-morya',
-    image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=500&q=80',
-    description: 'Double-sided crisp xerox set of last 8 years insem & endsem question papers with answers.',
-    shopNote: 'Opp. SCOE Gate'
-  },
-  {
-    id: 'decoded-central-brandnew',
-    name: 'Brand New 2024 SPPU Decoded (Computer / IT / Mech / EnTC)',
-    itemGroup: 'decoded',
-    category: 'Academic Books & Decoded Notes',
-    keywords: ['decoded', 'sppu decoded', 'new decoded', 'techmax', 'nirali'],
-    price: 330,
-    mrp: 520,
-    stock: 'in_stock',
-    stockCount: 45,
-    rating: 5.0,
-    storeId: 'store-central-books',
-    image: 'https://images.unsplash.com/photo-1532012164546-f432f2e3777f?auto=format&fit=crop&w=500&q=80',
-    description: 'Fresh publisher copy with model question papers, answer keys, and syllabus blueprint.',
-    shopNote: 'Full stock of all engineering departments'
-  },
-
-  // --- SCIENTIFIC CALCULATORS (Multiple shops) ---
-  {
-    id: 'calc-techzone-991ms',
-    name: 'Casio fx-991MS 2nd Gen Scientific Calculator',
-    itemGroup: 'calculator',
-    category: 'Tech Accessories & Repairs',
-    keywords: ['calculator', 'scientific calculator', 'fx991ms', 'casio calc', 'casio 991ms'],
-    price: 850,
-    mrp: 1195,
-    stock: 'in_stock',
-    stockCount: 11,
-    rating: 4.7,
-    storeId: 'store-techzone',
-    image: 'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e485?auto=format&fit=crop&w=500&q=80',
-    description: 'Durable 401 functions scientific calculator permitted for Pune University engineering exams.',
-    shopNote: 'Lowest price in Vadgaon BK'
-  },
-  {
-    id: 'calc-central-991ms',
-    name: 'Casio fx-991MS Scientific Calculator with Hard Case',
-    itemGroup: 'calculator',
-    category: 'Academic Books & Decoded Notes',
-    keywords: ['calculator', 'casio fx991ms', 'scientific calculator', 'casio'],
-    price: 890,
-    mrp: 1195,
-    stock: 'in_stock',
-    stockCount: 7,
-    rating: 4.8,
-    storeId: 'store-central-books',
-    image: 'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e485?auto=format&fit=crop&w=500&q=80',
-    description: 'Standard 2-line display calculator with sliding hard cover. Solar + battery dual power.',
-    shopNote: 'Fun College Chowk'
-  },
-  {
-    id: 'calc-techzone-991ex',
-    name: 'Casio fx-991EX ClassWiz High-Res Scientific Calculator (552 Functions)',
-    itemGroup: 'calculator',
-    category: 'Tech Accessories & Repairs',
-    keywords: ['casio', 'calculator', 'fx991ex', 'classwiz', 'scientific calculator', 'engineering calculator'],
-    price: 1340,
-    mrp: 1795,
-    stock: 'in_stock',
-    stockCount: 15,
-    rating: 5.0,
-    storeId: 'store-techzone',
-    image: 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?auto=format&fit=crop&w=500&q=80',
-    description: 'Natural textbook display with spreadsheet, 4x4 matrix and polynomial equation solver. 3-yr Casio warranty.',
-    shopNote: 'Authorized Casio dealer with student discount'
-  },
-  {
-    id: 'calc-morya-991ex',
-    name: 'Casio fx-991EX ClassWiz (Includes Free Calculator Pouch)',
-    itemGroup: 'calculator',
-    category: 'Stationery & Engineering Tools',
-    keywords: ['casio', 'calculator', 'fx991ex', 'classwiz'],
-    price: 1390,
-    mrp: 1795,
-    stock: 'few_left',
-    stockCount: 4,
+    stockCount: 100,
     rating: 4.9,
-    storeId: 'store-morya',
-    image: 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?auto=format&fit=crop&w=500&q=80',
-    description: 'Original Casio fx-991EX with free cushioned neoprene zipper travel pouch for college bag.',
-    shopNote: 'Opp. SCOE Gate'
+    storeId: 'store-sai-print',
+    image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80',
+    description: 'Strict SPPU format royal black hardcover binding with embossed golden foil title & college crest.',
+    shopNote: 'Cheapest & fastest binding near NBN Gate (Ready in 30 mins)'
   },
 
-  // --- HOSTEL ELECTRIC KETTLES (Multiple shops) ---
+  // ==========================================
+  // --- HOSTEL GEAR & DAILY NEEDS ---
+  // ==========================================
   {
     id: 'kettle-omkar-budget',
     name: 'Pigeon / Kitchoff 1.5L Stainless Steel Electric Kettle',
@@ -585,40 +662,6 @@ export const PRODUCTS = [
     shopNote: 'Cheapest kettle near Hostel Lane 3'
   },
   {
-    id: 'kettle-balaji-prestige',
-    name: 'Prestige 1.5L Stainless Steel Rapid Electric Kettle',
-    itemGroup: 'kettle',
-    category: 'Hostel Gear & Daily Needs',
-    keywords: ['kettle', 'prestige kettle', 'electric kettle', 'hostel'],
-    price: 560,
-    mrp: 995,
-    stock: 'in_stock',
-    stockCount: 8,
-    rating: 4.8,
-    storeId: 'store-balaji',
-    image: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?auto=format&fit=crop&w=500&q=80',
-    description: 'Concealed heating element with cool-touch handle and 1-year Prestige manufacturer warranty.',
-    shopNote: 'Near Sinhgad Central Library'
-  },
-  {
-    id: 'kettle-chemist-hotwater',
-    name: 'Butterfly 1.8L Large Capacity Electric Kettle',
-    itemGroup: 'kettle',
-    category: 'Pharmacy & Wellness',
-    keywords: ['kettle', 'electric kettle', 'hot water', 'butterfly kettle'],
-    price: 620,
-    mrp: 1100,
-    stock: 'in_stock',
-    stockCount: 6,
-    rating: 4.7,
-    storeId: 'store-campus-chemist',
-    image: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?auto=format&fit=crop&w=500&q=80',
-    description: 'Extra-large 1.8 litre capacity suitable for sharing with hostel roommates for winter hot water.',
-    shopNote: 'Navale Bridge Chowk'
-  },
-
-  // --- HOSTEL EXTENSION BOARDS (Multiple shops) ---
-  {
     id: 'ext-omkar-economy',
     name: 'Hi-Fi 4-Socket Heavy Duty Extension Board with Master Switch',
     itemGroup: 'extension',
@@ -634,48 +677,78 @@ export const PRODUCTS = [
     description: '4 universal sockets with 1.5m cord for phone and laptop charging in Sinhgad hostel rooms.',
     shopNote: 'Cheapest extension board on campus'
   },
+
+  // ==========================================
+  // --- TECH ACCESSORIES & REPAIRS ---
+  // ==========================================
   {
-    id: 'ext-navale-anchor',
-    name: 'Anchor by Panasonic 4-Socket Surge Protector Extension Board',
-    itemGroup: 'extension',
-    category: 'Electronics & BE Projects',
-    keywords: ['extension board', 'anchor extension', 'surge protector', 'power strip'],
-    price: 260,
-    mrp: 425,
+    id: 'calc-techzone-991ms',
+    name: 'Casio fx-991MS 2nd Gen Scientific Calculator',
+    itemGroup: 'calculator',
+    category: 'Tech Accessories & Repairs',
+    keywords: ['calculator', 'scientific calculator', 'fx991ms', 'casio calc', 'casio 991ms'],
+    price: 850,
+    mrp: 1195,
     stock: 'in_stock',
-    stockCount: 19,
-    rating: 4.9,
-    storeId: 'store-navale-elec',
-    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=500&q=80',
-    description: 'Thermal overload protection prevents voltage spikes from damaging laptop chargers in hostel.',
-    shopNote: 'Near SKNCOE Gate'
+    stockCount: 11,
+    rating: 4.7,
+    storeId: 'store-techzone',
+    image: 'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e485?auto=format&fit=crop&w=500&q=80',
+    description: 'Durable 401 functions scientific calculator permitted for Pune University engineering exams.',
+    shopNote: 'Lowest price in Vadgaon BK'
   },
   {
-    id: 'ext-techzone-goldmedal',
-    name: 'Goldmedal Curve 4x4 Heavy Extension Board (2.5M Long Cable)',
-    itemGroup: 'extension',
+    id: 'calc-techzone-991ex',
+    name: 'Casio fx-991EX ClassWiz High-Res Scientific Calculator (552 Functions)',
+    itemGroup: 'calculator',
     category: 'Tech Accessories & Repairs',
-    keywords: ['extension board', 'long extension', 'surge protector', 'goldmedal'],
-    price: 320,
-    mrp: 520,
+    keywords: ['casio', 'calculator', 'fx991ex', 'classwiz', 'scientific calculator', 'engineering calculator'],
+    price: 1340,
+    mrp: 1795,
     stock: 'in_stock',
-    stockCount: 14,
-    rating: 4.8,
+    stockCount: 15,
+    rating: 5.0,
     storeId: 'store-techzone',
-    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=500&q=80',
-    description: 'Extra long 2.5 meter wire reaches far corner hostel beds and desks easily.',
-    shopNote: 'Opp. Sinhgad Dental College'
+    image: 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?auto=format&fit=crop&w=500&q=80',
+    description: 'Natural textbook display with spreadsheet, 4x4 matrix and polynomial equation solver. 3-yr Casio warranty.',
+    shopNote: 'Authorized Casio dealer with student discount'
+  },
+
+  // ==========================================
+  // --- PHARMACY & WELLNESS ---
+  // ==========================================
+  {
+    id: 'med-volini-chemist',
+    name: 'Volini Maxx Pain Relief Spray (100g Can)',
+    itemGroup: 'medicine',
+    category: 'Pharmacy & Wellness',
+    keywords: ['volini', 'pain spray', 'medicine', 'first aid', 'chemist', 'dettol'],
+    price: 175,
+    mrp: 235,
+    stock: 'in_stock',
+    stockCount: 22,
+    rating: 4.8,
+    storeId: 'store-campus-chemist',
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=80',
+    description: 'Instant relief from long study backaches and sports muscle strain. Open 24 Hours.',
+    shopNote: 'Navale Bridge Chowk'
   }
 ];
 
 export const CATEGORIES = [
-  'All Products',
-  'Stationery & Engineering Tools',
-  'Electronics & BE Projects',
+  'All Stores & Items',
+  'Food, Canteen & Student Mess',
+  'Engineering Stationery & Tools',
   'Academic Books & Decoded Notes',
   'Xerox & Black Book Project Binding',
-  'Tech Accessories & Repairs',
+  'Electronics & BE Projects',
   'Hostel Gear & Daily Needs',
+  'Tech Accessories & Repairs',
   'Pharmacy & Wellness',
   'Sports & Activewear'
 ];
+
+// Backwards compatibility aliases
+export const STORES = INITIAL_STORES;
+export const PRODUCTS = INITIAL_PRODUCTS;
+

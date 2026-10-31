@@ -26,12 +26,12 @@ import HeroBanner from './components/HeroBanner';
 import ProductCard from './components/ProductCard';
 import AIAgentModal from './components/AIAgentModal';
 import CampusMapModal from './components/CampusMapModal';
-import StudentProfileModal from './components/StudentProfileModal';
+import UserProfileModal from './components/UserProfileModal';
 import StoreDirectoryModal from './components/StoreDirectoryModal';
 import CartModal from './components/CartModal';
 
 export default function App() {
-  const { wishlist, cart, userLocation, profile } = useStudent();
+  const { wishlist, cart, userLocation, profile, activeRole, products, stores, shopkeeperProfile } = useStudent();
 
   // Navigation & Modals State
   const [activeTab, setActiveTab] = useState('shop'); // 'shop' | 'wishlist' | 'cart'
@@ -47,15 +47,15 @@ export default function App() {
 
   // Filtering & Sorting State
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All Products');
+  const [selectedCategory, setSelectedCategory] = useState('All Stores & Items');
   const [sortOrder, setSortOrder] = useState('cheapest_first'); // 'cheapest_first' | 'expensive_first' | 'nearest_campus' | 'highest_rated'
   const [maxBudget, setMaxBudget] = useState(null);
   const [inStockOnly, setInStockOnly] = useState(false);
 
-  // Filtered & Sorted Products computation
+  // Filtered & Sorted Products computation from dynamic database
   const filteredProducts = useMemo(() => {
-    let list = PRODUCTS.map(prod => {
-      const store = STORES.find(s => s.id === prod.storeId);
+    let list = products.map(prod => {
+      const store = stores.find(s => s.id === prod.storeId);
       const dist = store ? calculateDistanceKm(userLocation.lat, userLocation.lng, store.lat, store.lng) : 0.5;
       return {
         ...prod,
@@ -150,6 +150,28 @@ export default function App() {
         cartCount={cart.length}
         wishlistCount={wishlist.length}
       />
+
+      {/* Shopkeeper Mode Active Alert & Quick Inventory Access */}
+      {activeRole === 'shopkeeper' && (
+        <div className="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 text-white px-4 py-2.5 text-xs font-medium shadow-inner">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div className="flex items-center space-x-2">
+              <span className="font-extrabold bg-black/25 px-2 py-0.5 rounded uppercase tracking-wider text-[10px]">
+                Shopkeeper Mode Active
+              </span>
+              <span>
+                Managing: <b>{shopkeeperProfile.storeName || 'Campus Partner Store'}</b>
+              </span>
+            </div>
+            <button 
+              onClick={() => setIsProfileOpen(true)}
+              className="bg-white text-amber-950 px-3 py-1 rounded-lg font-bold hover:bg-amber-100 transition shadow-sm text-xs"
+            >
+              Add New Food/Products & Update Stock →
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Hero Banner with Search & Filters */}
       <HeroBanner
@@ -317,7 +339,7 @@ export default function App() {
         highlightedStoreId={mapHighlightedStoreId}
       />
 
-      <StudentProfileModal
+      <UserProfileModal
         isOpen={isProfileOpen}
         onClose={() => setIsProfileOpen(false)}
       />

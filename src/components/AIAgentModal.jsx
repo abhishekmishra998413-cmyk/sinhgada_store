@@ -27,7 +27,7 @@ import { CAMPUS_LOCATIONS } from '../data/campusStoresAndProducts';
 import { searchWithChigruAI, parseBudgetFromText, CHIGRU_PRESETS } from '../services/aiAgentService';
 
 export default function AIAgentModal({ isOpen, onClose, onSelectProductOnMap }) {
-  const { profile, userLocation, addToCart } = useStudent();
+  const { profile, userLocation, addToCart, products, stores } = useStudent();
   
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
@@ -57,13 +57,13 @@ export default function AIAgentModal({ isOpen, onClose, onSelectProductOnMap }) 
       {
         id: 'chigru-welcome-1',
         sender: 'chigru',
-        text: `Namaste ${profile.name ? profile.name.split(' ')[0] : 'Sinhgadite'}! 🙏 I am **Chigru**, your dedicated Sinhgad Campus AI Shopping Agent.`,
+        text: `Namaste ${profile.name ? profile.name.split(' ')[0] : 'Sinhgadite'}! 🙏 I am **Chigru**, your dedicated Sinhgad Campus AI Shopping & Food Finder.`,
         timestamp: 'Just now'
       },
       {
         id: 'chigru-welcome-2',
         sender: 'chigru',
-        text: `Tell me **what product you need** and **at what price**, and I will scan every single shop around Sinhgad campus (SCOE, SKNCOE, NBN, Hostels, Vadgaon & Ambegaon) and display **each and every shop right from cheapest to most expensive** with live stock and direct Google Maps directions!\n\n👉 **What product are you looking for today?**`,
+        text: `Tell me **what product or food item you want** and **at what price range** (Food, Mess Thali, Maggi, Coffee, Drafters, Aprons, Books, Electronics, etc.).\n\nI will search every shop & canteen in our Sinhgad database and show you **each and every shop right from cheapest to most expensive** with live stock and direct Google Maps walking directions!\n\n👉 **What product or food are you looking for today?**`,
         type: 'product_prompt',
         timestamp: 'Just now'
       }
@@ -86,7 +86,7 @@ export default function AIAgentModal({ isOpen, onClose, onSelectProductOnMap }) 
     const chigruPriceMsg = {
       id: `chigru-${Date.now()}`,
       sender: 'chigru',
-      text: `Got it! You need "${productName}".\n\n💰 **At what target price (₹) are you looking to buy this?**\n(Enter your ideal price or choose below, and I will show you each shop ranked from cheapest to expensive!):`,
+      text: `Got it! You need "${productName}".\n\n💰 **At what price range of money (₹) are you looking for this?**\n(Enter your target budget or pick below, and I will show every shop closer to that range ranked from cheapest to expensive!):`,
       type: 'price_prompt',
       timestamp: 'Just now'
     };
@@ -112,7 +112,7 @@ export default function AIAgentModal({ isOpen, onClose, onSelectProductOnMap }) 
     setTimeout(() => {
       executeChigruSearch(desiredProduct, priceVal);
       setIsThinking(false);
-    }, 600);
+    }, 500);
   };
 
   const executeChigruSearch = (productQuery, priceTarget) => {
@@ -122,7 +122,9 @@ export default function AIAgentModal({ isOpen, onClose, onSelectProductOnMap }) 
       studentLat: userLocation.lat,
       studentLng: userLocation.lng,
       studentName: profile.name,
-      studentCollege: profile.college
+      studentCollege: profile.college,
+      allProducts: products,
+      allStores: stores
     });
 
     const chigruResultMsg = {
@@ -153,7 +155,6 @@ export default function AIAgentModal({ isOpen, onClose, onSelectProductOnMap }) 
       timestamp: 'Just now'
     };
 
-    // Parse whether user entered a budget number in their text
     const extractedPrice = parseBudgetFromText(userText) || targetPrice;
     
     setIsThinking(true);
@@ -166,13 +167,15 @@ export default function AIAgentModal({ isOpen, onClose, onSelectProductOnMap }) 
         studentLat: userLocation.lat,
         studentLng: userLocation.lng,
         studentName: profile.name,
-        studentCollege: profile.college
+        studentCollege: profile.college,
+        allProducts: products,
+        allStores: stores
       });
 
       const chigruResultMsg = {
         id: `chigru-${Date.now()}`,
         sender: 'chigru',
-        text: `🤖 **Chigru's Analysis for "${userText}":**\n\n${aiResult.aiReasoning}`,
+        text: `🤖 **Chigru's Campus Analysis for "${userText}":**\n\n${aiResult.aiReasoning}`,
         type: 'results',
         data: aiResult,
         timestamp: 'Just now'
@@ -181,7 +184,7 @@ export default function AIAgentModal({ isOpen, onClose, onSelectProductOnMap }) 
       setStep('show_results');
       setIsThinking(false);
       setMessages(prev => [...prev, chigruResultMsg]);
-    }, 600);
+    }, 500);
   };
 
   return (
@@ -277,17 +280,17 @@ export default function AIAgentModal({ isOpen, onClose, onSelectProductOnMap }) 
                 {/* Step 2: Target Price Prompts */}
                 {msg.type === 'price_prompt' && (
                   <div className="mt-3 pt-3 border-t border-slate-100">
-                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                      Select Target Price for "{desiredProduct}":
+                    <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+                      Choose Your Target Price / Budget for "{desiredProduct}":
                     </p>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      {[150, 250, 350, 500, 800].map((pr) => (
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                      {[35, 50, 80, 150, 250, 350, 500].map((pr) => (
                         <button
                           key={pr}
                           onClick={() => handleSelectPrice(pr)}
-                          className="px-3 py-2 bg-slate-50 hover:bg-orange-600 hover:text-white text-slate-800 font-bold text-xs rounded-xl border border-slate-200 hover:border-orange-600 transition flex items-center justify-between"
+                          className="px-3 py-2 bg-stone-50 hover:bg-orange-600 hover:text-white text-slate-800 font-bold text-xs rounded-xl border border-stone-200 hover:border-orange-600 transition flex items-center justify-between"
                         >
-                          <span>Target:</span>
+                          <span className="text-[11px] text-slate-500 hover:text-white">Budget:</span>
                           <span>₹{pr}</span>
                         </button>
                       ))}
@@ -295,7 +298,7 @@ export default function AIAgentModal({ isOpen, onClose, onSelectProductOnMap }) 
                         onClick={() => handleSelectPrice(null)}
                         className="px-3 py-2 bg-amber-50 hover:bg-amber-100 text-amber-900 font-bold text-xs rounded-xl border border-amber-200 transition text-center"
                       >
-                        Cheapest Possible (Any Price)
+                        Cheapest (Any)
                       </button>
                     </div>
                   </div>

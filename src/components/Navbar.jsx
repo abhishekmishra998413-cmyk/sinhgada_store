@@ -22,7 +22,7 @@ export default function Navbar({
   cartCount,
   wishlistCount 
 }) {
-  const { profile, userLocation, setUserLocation } = useStudent();
+  const { profile, userLocation, setUserLocation, activeRole } = useStudent();
 
   const handleLocationChange = (e) => {
     const locId = e.target.value;
@@ -122,21 +122,29 @@ export default function Navbar({
               <span className="hidden md:inline">Campus Map</span>
             </button>
 
-            {/* Student Profile Button (Customer) */}
+            {/* Student or Shopkeeper Profile & Mode Switcher Button */}
             <button
               onClick={onOpenProfile}
-              className="inline-flex items-center space-x-2 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border border-slate-200 hover:border-orange-300 hover:bg-orange-50/50 text-slate-700 transition group"
-              title="Student Customer Profile & ID Pass"
+              className={`inline-flex items-center space-x-2 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border transition group ${
+                activeRole === 'shopkeeper'
+                  ? 'border-amber-400 bg-amber-50/80 text-amber-950'
+                  : 'border-slate-200 hover:border-orange-300 hover:bg-orange-50/50 text-slate-700'
+              }`}
+              title="Switch Mode or Edit Profile (Consumer / Shopkeeper)"
             >
-              <div className="w-7 h-7 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-xs group-hover:bg-orange-600 group-hover:text-white transition">
-                {profile.name ? profile.name.charAt(0).toUpperCase() : 'S'}
+              <div className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs transition ${
+                activeRole === 'shopkeeper'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-orange-100 text-orange-600 group-hover:bg-orange-600 group-hover:text-white'
+              }`}>
+                {activeRole === 'shopkeeper' ? '🏪' : (profile.name ? profile.name.charAt(0).toUpperCase() : 'S')}
               </div>
               <div className="hidden xl:block text-left text-xs">
-                <p className="font-semibold text-slate-800 leading-tight truncate max-w-[100px]">
-                  {profile.name.split(' ')[0]}
+                <p className="font-semibold text-slate-800 leading-tight truncate max-w-[110px]">
+                  {activeRole === 'shopkeeper' ? 'Shopkeeper Portal' : profile.name.split(' ')[0]}
                 </p>
-                <p className="text-[10px] text-slate-400 font-mono">
-                  {profile.prnNumber || 'Sinhgad ID'}
+                <p className="text-[10px] text-orange-600 font-bold uppercase tracking-wider">
+                  {activeRole === 'shopkeeper' ? 'Manage Store' : 'Consumer Pass'}
                 </p>
               </div>
             </button>
